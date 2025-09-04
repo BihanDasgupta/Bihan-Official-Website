@@ -100,6 +100,15 @@ h1, h2, h3, h4, h5, h6 {
     color: white;
 }
 
+.btn:visited {
+    color: #ff69b4 !important;
+}
+
+.btn-outline:visited {
+    color: #ff69b4 !important;
+    border-color: #ff69b4;
+}
+
 /* Navigation */
 .navbar {
     position: fixed;
