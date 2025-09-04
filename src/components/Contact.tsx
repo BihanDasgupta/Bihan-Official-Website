@@ -1,13 +1,37 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Contact.css';
 
 const Contact: React.FC = () => {
+  const [showSuccess, setShowSuccess] = useState(false);
+
+  useEffect(() => {
+    // Check if we're coming back from a successful form submission
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('success') === 'true') {
+      setShowSuccess(true);
+      // Clear the URL parameter after showing the message
+      window.history.replaceState({}, document.title, window.location.pathname + window.location.hash);
+    }
+    
+    // Also check localStorage for form submission
+    const formSubmitted = localStorage.getItem('formSubmitted');
+    if (formSubmitted === 'true') {
+      setShowSuccess(true);
+      localStorage.removeItem('formSubmitted');
+    }
+  }, []);
+
+  const handleFormSubmit = () => {
+    // Set flag in localStorage before form submits
+    localStorage.setItem('formSubmitted', 'true');
+  };
+
   const contactInfo = [
     {
       type: 'Email',
       value: 'dasguptb@uci.edu',
       icon: '📧',
-      link: 'mailto:dasguptb@uci.edu'
+      link: 'mailto:dasguptb@uci.edu?subject=Hello from your portfolio&body=Hi Bihan,%0D%0A%0D%0AI found your portfolio and wanted to reach out...'
     },
     {
       type: 'Telegram',
@@ -95,12 +119,31 @@ const Contact: React.FC = () => {
           <div className="contact-form-container">
             <div className="contact-form card">
               <h4 className="form-title">Send me a message ✨</h4>
-              <form className="contact-form-element">
+              
+              {/* Success message - shows when redirected from FormSubmit */}
+              {showSuccess && (
+                <div className="form-success" style={{marginBottom: '2rem'}}>
+                  <h5 style={{color: '#22c55e', marginBottom: '1rem'}}>✅ Message Sent Successfully!</h5>
+                  <p style={{color: '#b8c5d6', fontSize: '0.9rem', lineHeight: '1.6', marginBottom: '0.5rem'}}>
+                    Thank you for reaching out! I've received your message and will get back to you as soon as possible. 
+                    I typically respond within 24 hours.
+                  </p>
+                  <p style={{color: '#ff69b4', fontSize: '0.8rem', fontStyle: 'italic'}}>
+                    📧 Sent Via: FormSubmit
+                  </p>
+                </div>
+              )}
+              <form 
+                action="https://formsubmit.co/bihand2005@gmail.com" 
+                method="POST"
+                className="contact-form-element"
+                encType="multipart/form-data"
+                onSubmit={handleFormSubmit}
+              >
                 <div className="form-group">
                   <input 
                     type="text" 
-                    id="name" 
-                    name="name" 
+                    name="from_name" 
                     placeholder="Your Name" 
                     required 
                     className="form-input"
@@ -109,8 +152,7 @@ const Contact: React.FC = () => {
                 <div className="form-group">
                   <input 
                     type="email" 
-                    id="email" 
-                    name="email" 
+                    name="reply_to" 
                     placeholder="Your Email" 
                     required 
                     className="form-input"
@@ -119,16 +161,13 @@ const Contact: React.FC = () => {
                 <div className="form-group">
                   <input 
                     type="text" 
-                    id="subject" 
                     name="subject" 
                     placeholder="Subject" 
-                    required 
                     className="form-input"
                   />
                 </div>
                 <div className="form-group">
                   <textarea 
-                    id="message" 
                     name="message" 
                     placeholder="Your Message" 
                     rows={5} 
@@ -136,9 +175,21 @@ const Contact: React.FC = () => {
                     className="form-textarea"
                   ></textarea>
                 </div>
+
+                {/* FormSubmit hidden settings */}
+                <input type="hidden" name="_subject" value="New Portfolio Contact" />
+                <input type="hidden" name="_captcha" value="false" />
+                <input type="hidden" name="_template" value="table" />
+                <input type="hidden" name="_next" value="http://localhost:3000/#contact?success=true" />
+                <input type="hidden" name="_autoresponse" value="Thank you for contacting me! I'll get back to you soon." />
+                
+                {/* Honeypot spam trap */}
+                <input type="text" name="_honey" style={{display:'none'}} tabIndex={-1} autoComplete="off" />
+
                 <button type="submit" className="btn btn-primary form-submit">
                   Send Message 🌸
                 </button>
+                
               </form>
             </div>
           </div>

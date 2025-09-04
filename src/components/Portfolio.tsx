@@ -75,7 +75,7 @@ const Portfolio: React.FC = () => {
                 <div className="project-links">
                   {project.liveLink ? (
                     <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="btn btn-small">
-                      Live Demo
+                      {project.title === 'LiveLink' ? 'Devpost' : 'Live Demo'}
                     </a>
                   ) : null}
                   {project.githubLink ? (
