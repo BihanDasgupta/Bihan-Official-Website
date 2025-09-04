@@ -18,6 +18,14 @@ const Contact: React.FC = () => {
     if (formSubmitted === 'true') {
       setShowSuccess(true);
       localStorage.removeItem('formSubmitted');
+      
+      // Only scroll to contact section if this was a form submission
+      setTimeout(() => {
+        const contactElement = document.getElementById('contact');
+        if (contactElement) {
+          contactElement.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
     }
   }, []);
 
@@ -180,7 +188,7 @@ const Contact: React.FC = () => {
                 <input type="hidden" name="_subject" value="New Portfolio Contact" />
                 <input type="hidden" name="_captcha" value="false" />
                 <input type="hidden" name="_template" value="table" />
-                <input type="hidden" name="_next" value="http://localhost:3000/#contact?success=true" />
+                <input type="hidden" name="_next" value="http://localhost:3000/#contact" />
                 <input type="hidden" name="_autoresponse" value="Thank you for contacting me! I'll get back to you soon." />
                 
                 {/* Honeypot spam trap */}
