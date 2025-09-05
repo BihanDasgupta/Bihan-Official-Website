@@ -52,6 +52,8 @@ const Contact: React.FC = () => {
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
     const telegramRegex = /^(?:@?[a-zA-Z0-9_]{5,32}|https?:\/\/t\.me\/[a-zA-Z0-9_]{5,32})$/;
+    // X (Twitter): @handle (1-15) OR full x.com URL. Entire string must match.
+    const xRegex = /^(?:@?[A-Za-z0-9_]{1,15}|https?:\/\/(?:www\.)?x\.com\/[A-Za-z0-9_]{1,15}(?:\/.*)?)$/i;
     const linkedInRegex = /^https?:\/\/(www\.)?linkedin\.com\/in\/[A-Za-z0-9%_-]+\/?$/i;
 
     if (!contactMethod) {
@@ -78,6 +80,12 @@ const Contact: React.FC = () => {
       if (!telegramRegex.test(contactInfo)) {
         e.preventDefault();
         alert('Please enter a valid Telegram username (e.g., @username) or t.me link.');
+        return;
+      }
+    } else if (contactMethod === 'x') {
+      if (!xRegex.test(contactInfo)) {
+        e.preventDefault();
+        alert("Please enter a valid X handle (e.g., @yourhandle) or x.com link.");
         return;
       }
     } else if (contactMethod === 'linkedin') {
@@ -163,6 +171,12 @@ const Contact: React.FC = () => {
       value: '@t1yash',
       icon: '📱',
       link: 'https://t.me/t1yash'
+    },
+    {
+      type: 'X',
+      value: '@t1yash',
+      icon: '𝕏',
+      link: 'https://x.com/t1yash'
     }
   ];
 
@@ -176,6 +190,11 @@ const Contact: React.FC = () => {
       name: 'LinkedIn',
       url: 'https://www.linkedin.com/in/bihan-dasgupta-8b63a5286',
       icon: '💼'
+    },
+    {
+      name: 'Devfolio',
+      url: 'https://devfolio.co/@bihand/projects',
+      icon: '🧩'
     },
     {
       name: 'Devpost',
@@ -301,6 +320,7 @@ const Contact: React.FC = () => {
                     <option value="" disabled selected>Choose Contact Method</option>
                     <option value="email">📧 Email</option>
                     <option value="telegram">📱 Telegram</option>
+                    <option value="x">𝕏 X (Twitter)</option>
                     <option value="linkedin">💼 LinkedIn</option>
                   </select>
                 </div>

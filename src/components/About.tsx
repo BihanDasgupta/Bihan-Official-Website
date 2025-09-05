@@ -12,22 +12,22 @@ const About: React.FC = () => {
               I'm a computer science student at UC Irvine driven by a love for innovation and the need to create. Over the past few years, I've:
             </p>
             <div className="about-achievements">
-              <div className="achievement">
+              <a className="achievement" href="https://cazador.onrender.com/" target="_blank" rel="noopener noreferrer">
                 <span className="achievement-emoji">🚀</span>
                 <p>Built an AI job-matching platform and career coach now becoming a portfolio company for a venture firm.</p>
-              </div>
-              <div className="achievement">
+              </a>
+              <a className="achievement" href="https://devfolio.co/projects/zotswap-2f2d" target="_blank" rel="noopener noreferrer">
                 <span className="achievement-emoji">🏆</span>
                 <p>Won ETH Denver 2025 with a decentralized marketplace for student rentals through UCI's Blockchain Developer Team.</p>
-              </div>
-              <div className="achievement">
+              </a>
+              <a className="achievement" href="https://youtu.be/GUwPkCh3HXc?si=zNx-1ZpABD6smPet" target="_blank" rel="noopener noreferrer">
                 <span className="achievement-emoji">📚</span>
                 <p>Published and presented NLP research at a conference and forthcoming journal.</p>
-              </div>
-              <div className="achievement">
+              </a>
+              <a className="achievement" href="https://store.steampowered.com/app/2925430/Sandwich_Sim/" target="_blank" rel="noopener noreferrer">
                 <span className="achievement-emoji">🎮</span>
                 <p>Released multiplayer games on Steam and itch.io through UCI's Video Game Development Club.</p>
-              </div>
+              </a>
             </div>
             <p>
               Beyond developing, I enjoy bringing people together — whether through leading Blockchain at UCI as Vice President, collaborations in interdisciplinary research, or teamwork in my classes and projects. I aim to bridge research, entrepreneurship, and engineering to create meaningful technology.

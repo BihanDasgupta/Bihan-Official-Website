@@ -41,6 +41,15 @@ const Footer: React.FC = () => {
               🚀
             </a>
             <a 
+              href="https://devfolio.co/@bihand/projects" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="social-link"
+              aria-label="Devfolio"
+            >
+              🧩
+            </a>
+            <a 
               href="https://bihandasgupta.itch.io/" 
               target="_blank" 
               rel="noopener noreferrer"

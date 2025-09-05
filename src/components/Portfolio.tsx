@@ -83,6 +83,11 @@ const Portfolio: React.FC = () => {
                       GitHub
                     </a>
                   ) : null}
+                  {project.title === 'Zot Swap' ? (
+                    <a href="https://devfolio.co/projects/zotswap-2f2d" target="_blank" rel="noopener noreferrer" className="btn btn-small btn-outline">
+                      Devfolio
+                    </a>
+                  ) : null}
                 </div>
               </div>
             </div>
