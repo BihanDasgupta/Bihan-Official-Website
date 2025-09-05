@@ -32,6 +32,9 @@
   border-left: 4px solid rgba(255, 105, 180, 0.3);
   transition: all 0.3s ease;
   animation: fadeInLeft 1s ease forwards;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
 }
 
 .achievement:hover {

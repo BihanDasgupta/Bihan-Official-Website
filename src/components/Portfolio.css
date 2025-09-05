@@ -15,6 +15,41 @@
   overflow: hidden;
 }
 
+/* Modal */
+.project-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.project-modal-content {
+  max-width: 800px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 105, 180, 0.3);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  padding: 1.5rem;
+  color: #fff;
+  position: relative;
+}
+
+.project-modal-close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
 .portfolio-image {
   height: 200px;
   background: rgba(255, 255, 255, 0.05);

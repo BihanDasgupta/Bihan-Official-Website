@@ -10,7 +10,6 @@ const Footer: React.FC = () => {
         <div className="footer-content">
           <div className="footer-text">
             <p>&copy; {currentYear} Bihan Dasgupta. All rights reserved. 🌸</p>
-            <p className="footer-tagline">Made with 💖 for dreamy conversations</p>
           </div>
           <div className="footer-social">
             <a 

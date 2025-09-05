@@ -193,6 +193,17 @@ h1, h2, h3, h4, h5, h6 {
   border-color: #ff1493 !important;
 }
 
+/* Global link visibility - exclude buttons */
+a:not(.btn) {
+  color: #ffb6c1;
+}
+a:not(.btn):hover {
+  color: #ff69b4;
+}
+a:not(.btn):visited {
+  color: #d870ff; /* dark pink / light purple */
+}
+
 /* Animations */
 @keyframes fadeInUp {
   from {

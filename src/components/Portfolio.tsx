@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Portfolio.css';
 
 const Portfolio: React.FC = () => {
+  const [selectedProject, setSelectedProject] = useState<null | typeof projects[number]>(null);
   const projects = [
     {
       title: 'Cazador',
@@ -53,6 +54,36 @@ const Portfolio: React.FC = () => {
     }
   ];
 
+  // Allow other components (e.g., About) to open a project modal by title
+  useEffect(() => {
+    const handler = (e: CustomEvent<{ title: string }>) => {
+      const title = e.detail?.title;
+      if (!title) return;
+      const proj = projects.find(p => p.title.toLowerCase() === title.toLowerCase());
+      if (proj) {
+        setSelectedProject(proj);
+        document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' });
+      }
+    };
+    // @ts-ignore - Custom event from other components
+    window.addEventListener('openProjectModal', handler as EventListener);
+    return () => {
+      // @ts-ignore
+      window.removeEventListener('openProjectModal', handler as EventListener);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!selectedProject) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setSelectedProject(null);
+      }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [selectedProject]);
+
   return (
     <section id="portfolio" className="portfolio">
       <div className="container">
@@ -60,13 +91,23 @@ const Portfolio: React.FC = () => {
         <div className="portfolio-grid">
           {projects.map((project, index) => (
             <div key={project.title} className="portfolio-item card hover-lift" 
-                 style={{ animationDelay: `${index * 0.2}s` }}>
+                 style={{ animationDelay: `${index * 0.2}s` }}
+                 role="button"
+                 onClick={() => setSelectedProject(project)}>
               <div className="portfolio-image">
                 <div className="project-icon">{project.image}</div>
               </div>
               <div className="portfolio-content">
                 <h3 className="project-title">{project.title}</h3>
-                <p className="project-description">{project.description}</p>
+                {(() => {
+                  const desc = project.description;
+                  const noteIdx = desc.indexOf('\nNOTE:');
+                  if (noteIdx !== -1) {
+                    const before = desc.substring(0, noteIdx);
+                    return <p className="project-description">{before}</p>;
+                  }
+                  return <p className="project-description">{desc}</p>;
+                })()}
                 <div className="project-technologies">
                   {project.technologies.map((tech, techIndex) => (
                     <span key={techIndex} className="tech-tag">{tech}</span>
@@ -93,6 +134,70 @@ const Portfolio: React.FC = () => {
             </div>
           ))}
         </div>
+        {selectedProject && (
+          <div className="project-modal" onClick={() => { setSelectedProject(null); }}>
+            <div className="project-modal-content" onClick={e => e.stopPropagation()}>
+              <button className="project-modal-close" aria-label="Close" onClick={() => { setSelectedProject(null); }}>×</button>
+              <div className="portfolio-image" style={{ marginBottom: '1rem' }}>
+                <div className="project-icon">{selectedProject.image}</div>
+              </div>
+              <h3 className="project-title" style={{ marginTop: 0 }}>{selectedProject.title}</h3>
+              {(() => {
+                const desc = selectedProject.description;
+                const splitIndex = desc.indexOf('\nNOTE:');
+                if (splitIndex !== -1) {
+                  const before = desc.substring(0, splitIndex);
+                  const note = desc.substring(splitIndex + 1); // keep 'NOTE:' prefix below
+                  return (
+                    <>
+                      <p className="project-description">{before}</p>
+                      {selectedProject.title === 'Cazador' && (
+                        <p className="project-description" style={{ marginTop: '-0.25rem' }}>
+                          MVP to be built into a portfolio company funded by{' '}
+                          <a href="https://www.linkventures.com/" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'underline' }}>Link Ventures</a>.
+                        </p>
+                      )}
+                      <p className="project-description">{note}</p>
+                    </>
+                  );
+                }
+                return (
+                  <>
+                    <p className="project-description">{desc}</p>
+                    {selectedProject.title === 'Cazador' && (
+                      <p className="project-description" style={{ marginTop: '-0.25rem' }}>
+                        MVP to be built into a portfolio company funded by{' '}
+                        <a href="https://www.linkventures.com/" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'underline' }}>Link Ventures</a>.
+                      </p>
+                    )}
+                  </>
+                );
+              })()}
+              <div className="project-technologies" style={{ marginTop: '1rem' }}>
+                {selectedProject.technologies.map((tech, t) => (
+                  <span key={t} className="tech-tag">{tech}</span>
+                ))}
+              </div>
+              <div className="project-links" style={{ marginTop: '1rem' }}>
+                {selectedProject.liveLink ? (
+                  <a href={selectedProject.liveLink} target="_blank" rel="noopener noreferrer" className="btn btn-small">
+                    {selectedProject.title === 'LiveLink' ? 'Devpost' : 'Live Demo'}
+                  </a>
+                ) : null}
+                {selectedProject.githubLink ? (
+                  <a href={selectedProject.githubLink} target="_blank" rel="noopener noreferrer" className="btn btn-small btn-outline">
+                    GitHub
+                  </a>
+                ) : null}
+                {selectedProject.title === 'Zot Swap' ? (
+                  <a href="https://devfolio.co/projects/zotswap-2f2d" target="_blank" rel="noopener noreferrer" className="btn btn-small btn-outline">
+                    Devfolio
+                  </a>
+                ) : null}
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );
