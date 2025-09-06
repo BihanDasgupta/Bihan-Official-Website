@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './Hero.css';
 
 const Hero: React.FC = () => {
@@ -56,9 +56,35 @@ const Hero: React.FC = () => {
             </div>
           </div>
         </div>
+        <RepoBubble />
       </div>
     </section>
   );
 };
+
+const RepoBubble: React.FC = () => {
+  const [collapsed, setCollapsed] = React.useState(() => {
+    try { return localStorage.getItem('repoBubbleCollapsed') === 'true'; } catch { return false; }
+  });
+
+  useEffect(() => {
+    try { localStorage.setItem('repoBubbleCollapsed', String(collapsed)); } catch {}
+  }, [collapsed]);
+
+  return collapsed ? (
+    <button className="repo-bubble-icon" aria-label="Open repository info" onClick={() => setCollapsed(false)}>💜</button>
+  ) : (
+    <div className="repo-bubble" role="dialog" aria-label="Repo Promo">
+      <button className="repo-bubble-close" aria-label="Close" onClick={() => setCollapsed(true)}>×</button>
+      <a
+        href="https://github.com/BihanDasgupta/Bihan-Official-Website"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Like the style of this website? Want to build your own? Click here to access the public repository!
+      </a>
+    </div>
+  );
+}
 
 export default Hero; 

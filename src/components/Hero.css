@@ -6,6 +6,53 @@
   position: relative;
   overflow: hidden;
 }
+/* Repo bubble */
+.repo-bubble {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  max-width: 260px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 105, 180, 0.35);
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 14px;
+  font-size: 0.85rem;
+  line-height: 1.3;
+  text-decoration: none;
+  box-shadow: 0 10px 30px rgba(255, 105, 180, 0.2);
+  z-index: 1100;
+}
+.repo-bubble:hover {
+  border-color: rgba(255, 105, 180, 0.6);
+  box-shadow: 0 12px 36px rgba(255, 105, 180, 0.35);
+}
+.repo-bubble a { color: #ffb6c1; text-decoration: none; }
+.repo-bubble a:hover { color: #ff69b4; }
+.repo-bubble-close {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+.repo-bubble-icon {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(216, 112, 255, 0.6);
+  background: rgba(216, 112, 255, 0.15);
+  color: #d870ff;
+  box-shadow: 0 10px 30px rgba(216, 112, 255, 0.25);
+  cursor: pointer;
+  z-index: 1100;
+}
 
 .hero-content {
   display: grid;

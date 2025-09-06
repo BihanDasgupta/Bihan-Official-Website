@@ -37,6 +37,16 @@ const Header: React.FC = () => {
               <li><button onClick={() => scrollToSection('skills')}>Skills</button></li>
               <li><button onClick={() => scrollToSection('portfolio')}>Portfolio</button></li>
               <li><button onClick={() => scrollToSection('contact')}>Contact</button></li>
+              <li>
+                <a
+                  href="https://github.com/BihanDasgupta/Bihan-Official-Website/blob/main/BihanResumeSeptember2025.pdf"
+                  className="resume-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  View Resume
+                </a>
+              </li>
             </ul>
           </nav>
 
