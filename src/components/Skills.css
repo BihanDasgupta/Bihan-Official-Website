@@ -15,7 +15,7 @@
 }
 
 .category-title {
-  color: #ff69b4;
+  color: var(--primary);
   margin-bottom: 1.5rem;
   font-size: 1.5rem;
   text-align: center;

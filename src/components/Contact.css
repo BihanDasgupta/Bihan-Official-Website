@@ -14,7 +14,7 @@
 }
 
 .contact-title {
-  color: #ff69b4;
+  color: var(--primary);
   margin-bottom: 1rem;
   font-size: 1.8rem;
   text-shadow: 0 0 15px rgba(255, 105, 180, 0.3);
@@ -25,6 +25,11 @@
   margin-bottom: 2rem;
   line-height: 1.7;
   font-size: 1.1rem;
+}
+
+/* Form header */
+.form-title {
+  color: var(--primary);
 }
 
 .contact-section-title {
@@ -73,7 +78,7 @@
 }
 
 .contact-type {
-  color: #ff69b4;
+  color: var(--primary);
   font-size: 0.9rem;
   font-weight: 500;
 }
@@ -135,7 +140,7 @@
 }
 
 .form-title {
-  color: #ff69b4;
+  color: var(--primary);
   margin-bottom: 1.5rem;
   font-size: 1.3rem;
   text-align: center;

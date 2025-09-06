@@ -72,7 +72,7 @@ const RepoBubble: React.FC = () => {
   }, [collapsed]);
 
   return collapsed ? (
-    <button className="repo-bubble-icon" aria-label="Open repository info" onClick={() => setCollapsed(false)}>💜</button>
+    <button className="repo-bubble-icon" aria-label="Open repository info" onClick={() => setCollapsed(false)}>🌸</button>
   ) : (
     <div className="repo-bubble" role="dialog" aria-label="Repo Promo">
       <button className="repo-bubble-close" aria-label="Close" onClick={() => setCollapsed(true)}>×</button>
