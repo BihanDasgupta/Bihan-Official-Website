@@ -12,7 +12,7 @@ const Hero: React.FC = () => {
             </h1>
             <p className="hero-subtitle">Full-Stack Developer & Builder at the Intersection of AI, Blockchain, and Entrepreneurship</p>
             <p className="hero-description">
-              I design and launch products that turn ambitious ideas into reality — from AI-driven career platforms and blockchain marketplaces to multiplayer games. My focus is on building scalable, user-first applications that push technology forward while solving real-world problems.
+              I design and launch products that turn ambitious ideas into reality — from AI-driven platforms and blockchain marketplaces to multiplayer games. My focus is on building scalable, user-first applications that push technology forward while solving real-world problems.
             </p>
             <div className="hero-learn-more">
               <button 
