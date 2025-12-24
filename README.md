@@ -221,19 +221,9 @@ The website is fully responsive with:
 4. Test thoroughly
 5. Submit a pull request
 
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
 ## 🙏 Credits
 
 - **Design Inspiration**: [PoppyNest](https://poppynest.netlify.app/)
 - **Icons**: Emoji-based icons for universal compatibility
 - **Fonts**: System fonts for optimal performance
 - **Animations**: Custom CSS animations and transitions
-
----
-
-**Your dreamy portfolio is ready to impress! 🌸✨**
-
-Built with love and lots of pink sparkles for Bihan Dasgupta 💖 
