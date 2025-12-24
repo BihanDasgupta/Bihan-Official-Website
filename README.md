@@ -1,6 +1,6 @@
 # 🌸 Bihan Dasgupta - Personal Portfolio Website
 
-A modern, responsive personal portfolio website built with **React**, **TypeScript**, and **CSS3**. This website showcases my skills, projects, and professional information in an elegant and dreamy manner, inspired by the aesthetic of [PoppyNest](https://poppynest.netlify.app/).
+A modern, responsive personal portfolio website built with **React**, **TypeScript**, and **CSS3**. This website showcases my skills, projects, and professional information in a manner inspired by the aesthetic of [PoppyNest](https://poppynest.netlify.app/).
 
 ## ✨ Features
 
